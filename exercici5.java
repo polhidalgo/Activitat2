@@ -44,11 +44,11 @@ public class exercici5 {
                         suspes++;
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("S'ha ignorat un valor no vàlid: " + value);
+                    System.out.println("Valor no vàlid: " + value);
                 }
+                
             }
 
-            // Escriure l'histograma al nou fitxer
             try (PrintWriter writer = new PrintWriter(new FileWriter(outputFileName))) {
                 writer.println("Histograma del fitxer " + inputFile.getName());
                 writer.println("------------");
@@ -56,10 +56,11 @@ public class exercici5 {
                 writer.println("Aprovat:" + "*".repeat(aprovat));
                 writer.println("Notable:" + "*".repeat(notable));
                 writer.println("Excel·lent:" + "*".repeat(excelent));
+                writer.close();
             }
-
+            fileScanner.close();
         } catch (IOException e) {
-            System.out.println("Error durant la lectura/escriptura del fitxer: " + e.getMessage());
+            System.out.println("Error durant la escriptura del fitxer: " + e.getMessage());
         }
     }
 }

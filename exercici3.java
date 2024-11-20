@@ -30,6 +30,7 @@ public class exercici3 {
                 System.out.println("La línia " + linea + " té " + contadorParaules + " paraules");
                 linea++;
             }
+            fileScanner.close();
         } catch (Exception e) {
             System.out.println("Error en llegir el fitxer: " + e.getMessage());
         }

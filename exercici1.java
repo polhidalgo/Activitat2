@@ -14,6 +14,7 @@ public class exercici1 {
         String text = scanner.nextLine();
         escriureUnFitxer(file, text);
         llegirUnFitxer(file);
+        scanner.close();
     }
 
     public static void escriureUnFitxer(File f, String text) {
@@ -21,7 +22,7 @@ public class exercici1 {
         try{
             PrintStream escriptor = new PrintStream(f);
             escriptor.print(textAlternat);
-
+            escriptor.close();
         }
         catch (Exception e) {
    
@@ -50,6 +51,7 @@ public class exercici1 {
                 String line = lector.nextLine();
                 System.out.println(line);
             }
+            lector.close();
         }
         catch (Exception e) {
            

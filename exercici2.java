@@ -1,6 +1,6 @@
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class exercici2 {
@@ -47,10 +47,11 @@ public class exercici2 {
             scanner.close();
         }
 
-        try{
-            FileOutputStream fos = new FileOutputStream(archiuDesti);
-                copiar(f1, fos);
-                copiar(f2, fos);
+        try (PrintWriter escriptor = new PrintWriter(new FileWriter(archiuDesti))) {
+            copiar(f1, escriptor);
+            copiar(f2, escriptor);
+            System.out.println("Fitxers fusionats correctament a: " + nomArchiuDesti);
+            escriptor.close();
         }
         catch(Exception e)
         {
@@ -61,15 +62,18 @@ public class exercici2 {
 
     
 
-    private static void copiar(File f, FileOutputStream fos){
+    private static void copiar(File f, PrintWriter escriptor){
         try 
-        { FileInputStream fis = new FileInputStream(f);
-            byte[] buffer = new byte[1024];
-            int bytesLeidos;
-            while ((bytesLeidos = fis.read(buffer)) != -1) {
-                fos.write(buffer, 0, bytesLeidos);
-                 }
-        
+        { Scanner fileScanner = new Scanner(f);
+            while(fileScanner.hasNextLine()){
+                String linia = fileScanner.nextLine();
+                // if(linia.trim().equalsIgnoreCase("fi")){
+                //     break;
+                // }
+                escriptor.println(linia);
+            }
+            fileScanner.close();
+            
         }
         catch(Exception e)
         {
